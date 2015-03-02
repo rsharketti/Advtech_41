@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HTML 5 Canvas - experiments</title>
+</head>
+
+<body>
+
+
+<!-- make a rectangular canvas area. To avoid distorted visuals, set the width and height the old school way.-->
+    <canvas width="500" height="300" id="myCanvas">
+    Sorry, your browser doesn't support the HTML5 canvas tag.
+    </canvas>
+    
+    
+    <script>
+        var myCanvas = document.getElementById("myCanvas");
+		//choose the rendering context and its built-in drawing function. 
+		var ctx = myCanvas.getContext("2d");
+		
+		/***** CREATE A RECTANGLE *****/
+		//use fillRect(starting x, startng y, width, height);
+		ctx.fillRect(20,35,100,15);
+		/***** end CREATE A RECTANGLE *****/
+		
+		/***** CREATE A RECTANGLE STROKE *****/
+		//use a similar function to just create a stroke.
+		ctx.strokeRect(130,35,50,35);
+		/***** end CREATE A RECTANGLE STROKE *****/
+		
+		/***** CREATE A MORE COMPLEX PATH *****/
+		//starting a line
+		ctx.beginPath();
+		//lift the pen and move it to where the line should start.
+		ctx.moveTo(40,200);
+		//move the pen but actually draw.(leave it in contact with surfact)
+		ctx.lineTo(70,155);
+		ctx.lineTo(70,100);
+		ctx.moveTo(100,200);
+		//draw a curve using the arc(center-x, center-y, radius, start angle, end angle, counterclockwise);
+		ctx.arc(200, 200, 100, 600, Math.PI*2, false);
+		//then fill or stroke that path:
+		ctx.stroke();
+		/***** end CREATE A MORE COMPLEX PATH *****/
+		
+		
+		/***** USING IMAGES *****/
+		
+		//create a new image object:
+		var img = new Image();
+		//event handler: if the image source loads....
+		img.addEventListener("load", function(){
+			//..put it on the canvas, use drawImage(img, starting x, startng y, width, height);
+			ctx.drawImage(img,350,75,300,200);	
+		},false);
+		//give the object a source, which triggers the 'load' event
+			img.src="img/Tulips.jpg";
+		
+		/***** end USING IMAGES *****/
+		
+		
+    </script>
+
+
+</body>
+</html>
